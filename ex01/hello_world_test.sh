@@ -2,7 +2,6 @@
 
 @test "When given no name, it should greet the world!" {
   run bash hello_world.sh
-
   [ "$status" -eq 0 ]
   [ "$output" = "Hello, World!" ]
 }
