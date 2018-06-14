@@ -1,0 +1,24 @@
+#!/bin/bash
+map(){
+	local command i rep
+	if [ $# -lt 2 ] || [[ ! "$@" =~ [[:space:]] ]]
+	then
+		echo "Error" >$2
+		return 1
+	fi
+	until [[ $1 ]]; do
+		command="$command $1"
+		shift
+	done
+	command="$command ${1%}"
+	shift
+	for i in "$@" 
+	do
+		if [[ $command =~ \{\} ]];then
+			rep="${command//\{\}/\"$i\"}"
+			eval "${rep//\\/\\\\}"
+		else
+			eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
+		fi
+	done
+}

@@ -2,7 +2,7 @@
 
 source ./ex06.sh
 
-@test "echo" {
+@test 'echo' {
   run map echo echo
 
   [ "$status" -eq 0 ]
